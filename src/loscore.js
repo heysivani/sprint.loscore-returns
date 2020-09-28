@@ -141,11 +141,61 @@ class LoScore {
   }
 
   memoize(func) {
-    // YOUR CODE HERE
+    let cache = {};
+    let output;
+    let exists;
+
+    return (val) => {
+      let funcString = JSON.stringify(func(val));
+
+      // // check if already in cache
+      // if (cache != {}) {
+      //   if (funcString in cache) {
+      //     return cache[funcString];
+      //   } else {
+      //     output = func[val];
+      //     cache[funcString] = output;
+      //   }
+      // } else {
+      //     output = func[val];
+      //     cache[funcString] = output;
+      // }
+
+      let value = JSON.stringify(val);
+
+      if (cache.length > 0) {
+        for (let key in cache) {
+          if (key == value) {
+            console.log("key" + key);
+            console.log("return " + cache[key]);
+          } else {
+            output = func(val);
+            cache[value] = output;
+          }
+        }
+      } else {
+        cache[value] = func(val);
+        output = cache[value];
+      }
+
+      console.log(cache);
+      return output;
+    };
   }
 
   invoke(collection, functionOrKey) {
-    // YOUR CODE HERE
+    let output = [];
+    let result;
+
+    this.each(collection, (val) => {
+      if (typeof functionOrKey === "string") {
+        result = val[functionOrKey].apply(val);
+      } else if (typeof functionOrKey === "function") {
+        result = functionOrKey.apply(val);
+      }
+      output.push(result);
+    });
+    return output;
   }
 
   /**
