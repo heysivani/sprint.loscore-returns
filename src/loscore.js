@@ -9,7 +9,7 @@ class LoScore {
   |~~~~~~~~~~
   * */
   uniq(array) {
-    let newArray = [];
+    const newArray = [];
     for (let i = 0; i < array.length; i++) {
       if (!newArray.includes(array[i])) {
         newArray.push(array[i]);
@@ -36,7 +36,7 @@ class LoScore {
   }
 
   map(collection, iteratee) {
-    let output = [];
+    const output = [];
 
     this.each(collection, (value) => {
       output.push(iteratee(value));
@@ -52,7 +52,7 @@ class LoScore {
   }
 
   reject(collection, test) {
-    let output = [];
+    const output = [];
 
     this.filter(collection, (value) => {
       if (!test(value)) {
@@ -63,7 +63,7 @@ class LoScore {
   }
 
   reduce(collection, iterator, accumulator) {
-    let array = collection.slice();
+    const array = collection.slice();
 
     if (accumulator === undefined) {
       accumulator = array[0];
@@ -105,7 +105,7 @@ class LoScore {
   |~~~~~~~~~~
   * */
   extend(main) {
-    let output = main;
+    const output = main;
 
     let objects = [...arguments].slice(1);
 
@@ -165,9 +165,7 @@ class LoScore {
 
       if (cache.length > 0) {
         for (let key in cache) {
-          if (key == value) {
-            console.log("key" + key);
-            console.log("return " + cache[key]);
+          if (key === value) {
           } else {
             output = func(val);
             cache[value] = output;
@@ -177,14 +175,12 @@ class LoScore {
         cache[value] = func(val);
         output = cache[value];
       }
-
-      console.log(cache);
       return output;
     };
   }
 
   invoke(collection, functionOrKey) {
-    let output = [];
+    const output = [];
     let result;
 
     this.each(collection, (val) => {
