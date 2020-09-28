@@ -81,8 +81,23 @@ class LoScore {
     return accumulator;
   }
 
-  every() {
-    // YOUR CODE HERE
+  every(collection, test) {
+    return this.reduce(
+      collection,
+      (accumulator, item) => {
+        if (test === undefined) {
+          return true;
+        }
+        if (!accumulator) {
+          return false;
+        }
+        accumulator = test(item);
+        if (accumulator) {
+          return true;
+        }
+      },
+      true
+    );
   }
 
   /**
