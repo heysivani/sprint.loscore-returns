@@ -36,7 +36,13 @@ class LoScore {
   }
 
   map(collection, iteratee) {
-    // YOUR CODE HERE
+    let output = [];
+
+    this.each(collection, (value) => {
+      output.push(iteratee(value));
+    });
+
+    return output;
   }
 
   filter(collection, test) {
