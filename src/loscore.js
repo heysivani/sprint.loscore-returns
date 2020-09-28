@@ -51,7 +51,16 @@ class LoScore {
     return result;
   }
 
-  reject(collection, test) {}
+  reject(collection, test) {
+    let output = [];
+
+    this.filter(collection, (value) => {
+      if (!test(value)) {
+        output.push(value);
+      }
+    });
+    return output;
+  }
 
   reduce(collection, iterator, accumulator) {
     // YOUR CODE HERE
