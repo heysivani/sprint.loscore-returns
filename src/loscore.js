@@ -128,7 +128,16 @@ class LoScore {
   * */
 
   once(func) {
-    // YOUR CODE HERE
+    let called = false;
+    let output;
+
+    return (val) => {
+      if (!called) {
+        called = true;
+        output = func(val);
+      }
+      return output;
+    };
   }
 
   memoize(func) {
